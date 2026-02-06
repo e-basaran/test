@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Signal Garden — An Accessible Focus Atelier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">✶</span>
+        <div>
+          <p class="brand-title">Signal Garden</p>
+          <p class="brand-subtitle">A calm, capable studio for deep focus.</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="ghost-button" id="contrastToggle" type="button">
+          High contrast
+        </button>
+        <button class="primary-button" id="newPrompt" type="button">
+          New studio prompt
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">A practical creative system</p>
+          <h1>
+            Plant an intention, shape a session, and leave with a clear snapshot
+            of progress.
+          </h1>
+          <p class="lead">
+            Signal Garden blends an accessible focus timer, a living task garden,
+            and a prompt engine that helps you begin. Everything is keyboard
+            friendly, responsive, and saved locally.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-button" id="startFocus" type="button">
+              Start focus session
+            </button>
+            <button class="secondary-button" id="saveSnapshot" type="button">
+              Save snapshot
+            </button>
+          </div>
+        </div>
+        <div class="hero-panel" aria-live="polite">
+          <div class="prompt-card" id="promptCard">
+            <p class="prompt-label">Studio prompt</p>
+            <h2 id="promptTitle">Sketch the first scene of your idea.</h2>
+            <p id="promptBody">
+              Describe what is happening, what is felt, and what you want the
+              viewer to remember. Keep it to three sentences.
+            </p>
+            <div class="prompt-meta">
+              <span id="promptTag">Mode: Narrative</span>
+              <span id="promptEnergy">Energy: Clear</span>
+            </div>
+          </div>
+          <div class="metrics">
+            <div>
+              <p class="metric-label">Session length</p>
+              <p class="metric-value" id="focusLength">25:00</p>
+            </div>
+            <div>
+              <p class="metric-label">Studio mood</p>
+              <p class="metric-value" id="studioMood">Steady / Bright</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="Studio tools">
+        <article class="panel">
+          <header>
+            <h3>Focus Timer</h3>
+            <p>Set a steady pace with gentle time cues.</p>
+          </header>
+          <div class="timer" role="timer" aria-live="polite">
+            <p class="timer-display" id="timerDisplay">25:00</p>
+            <div class="timer-controls">
+              <button class="primary-button" id="timerToggle" type="button">
+                Start
+              </button>
+              <button class="ghost-button" id="timerReset" type="button">
+                Reset
+              </button>
+            </div>
+            <div class="timer-slider">
+              <label for="duration">Session length</label>
+              <input
+                type="range"
+                id="duration"
+                min="10"
+                max="60"
+                value="25"
+                step="5"
+              />
+              <span id="durationValue">25 min</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <header>
+            <h3>Task Garden</h3>
+            <p>Grow a clear list of next actions.</p>
+          </header>
+          <form class="task-form" id="taskForm">
+            <label class="intent-label" for="taskInput">Add a task</label>
+            <input
+              class="text-input"
+              id="taskInput"
+              type="text"
+              placeholder="Draft the opening paragraph"
+              required
+            />
+            <button class="secondary-button" type="submit">Plant task</button>
+          </form>
+          <ul class="task-list" id="taskList" aria-live="polite"></ul>
+          <p class="status-text" id="taskStatus" role="status"></p>
+        </article>
+
+        <article class="panel">
+          <header>
+            <h3>Studio Notes</h3>
+            <p>Capture reflections, decisions, and sparks.</p>
+          </header>
+          <textarea
+            class="text-area"
+            id="studioNotes"
+            rows="8"
+            placeholder="What matters most right now?"
+          ></textarea>
+          <div class="note-actions">
+            <button class="primary-button" id="saveNotes" type="button">
+              Save notes
+            </button>
+            <button class="ghost-button" id="clearNotes" type="button">
+              Clear
+            </button>
+            <p class="status-text" id="noteStatus" role="status"></p>
+          </div>
+        </article>
+
+        <article class="panel">
+          <header>
+            <h3>Energy Palette</h3>
+            <p>Shift the atmosphere to match your pace.</p>
+          </header>
+          <div class="palette-options" role="radiogroup" aria-label="Studio palettes">
+            <button class="palette" data-theme="aurora" role="radio" aria-checked="true">
+              Aurora
+            </button>
+            <button class="palette" data-theme="ember" role="radio" aria-checked="false">
+              Ember
+            </button>
+            <button class="palette" data-theme="tide" role="radio" aria-checked="false">
+              Tide
+            </button>
+            <button class="palette" data-theme="moss" role="radio" aria-checked="false">
+              Moss
+            </button>
+          </div>
+          <div class="breath-card" aria-live="polite">
+            <p class="breath-label">One-minute reset</p>
+            <p class="breath-instruction" id="breathInstruction">
+              Inhale for 4 • Hold for 4 • Exhale for 6
+            </p>
+            <button class="secondary-button" id="startBreath" type="button">
+              Start reset
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section class="snapshot" aria-label="Saved snapshot">
+        <div>
+          <h3>Snapshot Archive</h3>
+          <p>Save your current studio state and export it anytime.</p>
+          <div class="snapshot-actions">
+            <button class="secondary-button" id="exportSnapshot" type="button">
+              Export summary
+            </button>
+            <button class="ghost-button" id="copySnapshot" type="button">
+              Copy to clipboard
+            </button>
+          </div>
+        </div>
+        <div class="snapshot-card" id="snapshotCard">
+          <p class="snapshot-title">No snapshots yet</p>
+          <p class="snapshot-body">
+            Save a snapshot to capture the prompt, tasks, and notes.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Designed for clarity and accessibility. Use keyboard navigation, adjust
+        contrast, and take breaks when you need to.
+      </p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
